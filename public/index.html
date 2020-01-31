@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en" itemscope itemtype="http://schema.org/WebPage"> <!--Change the lang property to your web"s language-->
+
+	<head prefix="og: http://ogp.me/ns#">
+
+		<title>NinoaPoCTest</title> <!--Up to 60-70 Characters. Optimal Format: Primary Keyword - Secondary Keyword | Brand Name-->
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-eval'">
+		<meta name="description" content=""> <!--Page description. No longer than 155 characters.-->
+		<meta name="keywords" content="">
+		<meta name="author" content=""> <!--Name of the author.-->
+
+		<!--Facebook Meta Tags-->
+		<meta property="og:image" content="http://" /> <!--URL of Image to show-->
+		<meta property="og:description" content="" /> <!--Page Description-->
+		<meta property="og:site_name" content="" /> <!--The Name Here-->
+		<meta property="og:url" content="http://" /> <!--The Web main URL-->
+		<meta property="og:title" content="" /> <!--The Title Here-->
+
+		<!--Google Meta Tags-->
+		<meta itemprop="name" content=""> <!--The Name or Title Here-->
+		<meta itemprop="description" content=""> <!--Page Description-->
+		<meta itemprop="image" content="http://"> <!--URL of Image to show-->
+
+		<!--Twitter Meta Tags - You"ll have to validate your website here: https://dev.twitter.com/docs/cards/validation/validator-->
+		<meta name="twitter:card" content="summary_large_image"> <!--Content Card Type-->
+		<meta name="twitter:domain" content=""> <!--Your web"s domain-->
+		<meta name="twitter:site" content="@"> <!--@publisher-->
+		<meta name="twitter:title" content=""> <!--Page Title-->
+		<meta name="twitter:description" content=""> <!--Page description less than 200 characters-->
+		<meta name="twitter:creator" content="@"> <!--@author-->
+		<meta name="twitter:image:src" content="http://"> <!--URL of Image to show-->
+
+		<!--Android Meta Tags-->
+		<meta name="mobile-web-app-capable" content="yes">
+
+		<!--Apple Meta Tags-->
+		<meta name="apple-mobile-web-app-title" content=""> <!--App Title or Name-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!--Styling for the iOS Status Bar-->
+
+		<!--Microsoft Tags-->
+		<meta name="msapplication-TileColor" content=""> <!--Color of the tile on Windows. In hexadecimal format-->
+		<meta name="application-name" content="" /> <!-- App Title -->
+		<meta name="msapplication-tooltip" content="" /> <!--Small text on hover-->
+		<meta name="msapplication-starturl" content="http://" /> <!-- URL to start in -->
+
+		<!--<link rel="publisher" href=""> Publisher"s Google+ URL-->
+
+		<meta name="theme-color" content=""><!--Theme color for browsers in hexadecimal format.-->
+
+		<link rel="shortcut icon" href="favicon.ico" /> <!--Favicon. Good tool for creating one: http://xiconeditor.com/ Create all sizes.-->
+		<!--<link rel="canonical" href=""> Canonical URL of your webpage-->
+
+		<!-- Third Party CSS Libraries -->
+
+		<!-- Monogatari CSS Libraries -->
+		<link rel="stylesheet" href="./monogatari.css">
+
+		<!-- Monogatari JavaScript Libraries -->
+		<!--<script src="./engine/debug/debug.js"></script>-->
+        <script src="../dist/bundle.js"></script>
+
+	</head>
+
+	<body>
+
+		<!-- Fallback when JavaScript is not available -->
+		<noscript>
+			<div class="middle text--center">
+				<h2>JavaScript Disabled or not Supported.</h2>
+				<small>To play this game, please enable JavaScript executing or use a different browser.</small>
+			</div>
+		</noscript>
+
+		<div id="monogatari">
+			<visual-novel>
+				<loading-screen></loading-screen>
+				<main-screen>
+					<main-menu></main-menu>
+				</main-screen>
+				<game-screen>
+					<dialog-log></dialog-log>
+					<text-box></text-box>
+					<quick-menu></quick-menu>
+				</game-screen>
+				<gallery-screen></gallery-screen>
+				<credits-screen></credits-screen>
+				<load-screen></load-screen>
+				<save-screen></save-screen>
+				<settings-screen></settings-screen>
+				<help-screen></help-screen>
+			</visual-novel>
+		</div>
+	</body>
+
+</html>
