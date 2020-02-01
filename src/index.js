@@ -6,45 +6,9 @@ import createUN from "./ninoa/UNpragma.js";
 import Dialog from './ninoa/elements/Dialog/Dialog.js';
 import Scene from './ninoa/elements/scene/Scene.js';
 import Head from './ninoa/head/Head.js';
+import TestWrapper from './ninoa/wrappers/TestWrapper.js';
+import MonogatariWrapper from './ninoa/wrappers/MonogatariWrapper';
 
-
-class MonogatariWrapper {
-    constructor(engine) {
-        this.engine = engine;
-        this.text = "";
-    }
-
-    setText(text) {
-        this.text = text;
-    }
-
-    getText(text) {
-        this.text = text;
-    }
-
-    showCurrentText() {
-        engine.run(this.text, false);
-    }
-
-}
-
-class TestWrapper {
-    constructor() {
-        this.text = "";
-    }
-
-    setText(text) {
-        this.text = text;
-    }
-
-    getText() {
-        return this.text;
-    }
-
-    showCurrentText() {
-        console.log(this.text);
-    }
-}
 
 export function testTree(){
     return (
@@ -56,6 +20,8 @@ export function testTree(){
     );
 }
 
+// console.log(testTree()); // This was used just to check if the tree was built correctly.
+
 // Test wrappper tests
 const proofTestHead = new Head(testTree(), new TestWrapper())
 proofTestHead.continue();
@@ -63,7 +29,7 @@ proofTestHead.continue();
 proofTestHead.continue();
 // proofTestHead.continue(); crashes
 
-console.log(testTree());
+
 
 const myHead = new Head(testTree(), new MonogatariWrapper(Monogatari));
 
