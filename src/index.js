@@ -5,6 +5,7 @@ import {$_ready} from '@aegis-framework/artemis';
 import createUN from "./ninoa/UNpragma.js";
 import Dialog from './ninoa/elements/Dialog/Dialog.js';
 import Scene from './ninoa/elements/scene/Scene.js';
+import Head from './ninoa/head/Head.js';
 
 
 class MonogatariWrapper {
@@ -45,36 +46,6 @@ class TestWrapper {
     }
 }
 
-export class TestHead {
-    constructor(position, engineWrapper) {
-        this.position = position;
-        this.engine = engineWrapper;
-    }
-
-    init() {
-        this.position.onEnter(this);
-    }
-
-    next() {
-        this.position.onLeave(this);
-        this.position = this.position.next(this);
-        this.position.onEnter(this);
-    }
-
-    continue() {
-        this.next();
-        //this.position.onHalt(); // Need to add an onHalt() lifecycle method to elements
-    }
-
-    back() {
-        this.position = this.position.back(this);
-    }
-}
-
-
-
-
-
 export function testTree(){
     return (
         <Scene>
@@ -86,7 +57,7 @@ export function testTree(){
 }
 
 // Test wrappper tests
-const proofTestHead = new TestHead(testTree(), new TestWrapper())
+const proofTestHead = new Head(testTree(), new TestWrapper())
 proofTestHead.continue();
 proofTestHead.continue();
 proofTestHead.continue();
@@ -94,7 +65,7 @@ proofTestHead.continue();
 
 console.log(testTree());
 
-const myHead = new TestHead(testTree(), new MonogatariWrapper(Monogatari));
+const myHead = new Head(testTree(), new MonogatariWrapper(Monogatari));
 
 function runNinoa() {
     myHead.next();
