@@ -1,47 +1,39 @@
-import { NinoaText } from "./text/Text";
-import Action from "../../actions/Action";
-
-export class NinoaDialog {
+export class NinoaScene {
 
     /**
-     * @type {*[]}
+     * @type *[]
      */
     children;
 
     constructor(props) {
-        const {timeline = "onClick", children} = props;
-
-        // Transforming strings into text nodes
-        const finalChildren = children.map(child => {
-            if (!(typeof child == "string")) return child; // escape hatch for non-strings
-            return new NinoaText({children : child});
-        });
+        const {children, timeline = "with"} = props;
 
         // registering this instance as the parent of it's children.
-        finalChildren.forEach(child => child.parent = this);
+        children.forEach(child => child.parent = this);
 
-        this.children = finalChildren;
+        this.children = children;
         this.timeline = timeline; // timeline not implemented for now.
         this.parent = null;
     }
 
     createAction(engineWrapper) {
-        // Maybe I'll think of some action that a dialog actually does at some point.
-        // Like clearing text or something.
+        // Maybe I'll think of some action that a scene actually does at some point.
         return new Action(() => null, ()=> null);
     }
 
     next(head) {
-        // Need to know which child we are currently prcessing.
+        // Need to know which child we are currently processing.
+        // returns -1 if head is not located in direct children.
         const current = this.children.findIndex(child => child === head.position);
 
         // escape hatch if no more children to process
         if (this.children.length === current + 1) {
             head.position = this;
-            return this.parent.next(head);
+            return this.parent.next();
         }
 
         // default
+        // Note if current is not a direct child, then current + 1 will give 0.
         return this.children[current+1];
     }
 
@@ -51,6 +43,7 @@ export class NinoaDialog {
 
         // escape hatch if no more children to process backwards
         if (0 < current - 1) {
+            head.position = this;
             return this.parent.back();
         }
 
@@ -59,16 +52,17 @@ export class NinoaDialog {
     }
 
     onEnter(head) {
-        // do nothing on enter.
+        // When the head is at a scene, it must move to a child as it cannot rest on a scene.
+        // i.e. timeline "onClick" is invalid for scene.
+        head.next();
+        // I should throw error if no children/provide a better error message.
     }
 
     onLeave(head) {
-        head.engine.showCurrentText(); // ignoring history for now
-        head.engine.setText(""); // ignoring history for now
+        // Do nothing on leave
     }
-    
 }
 
-export default function Dialog(props) {
-    return new NinoaDialog(props);
+export default function Scene(props) {
+    return new NinoaScene(props);
 }

@@ -26,6 +26,16 @@ export class NinoaText {
     back(ninoaHead) {
         return this.parent.next(ninoaHead);
     }
+
+    onEnter(head) {
+        head.engine.setText(head.engine.getText() + this.text); // ignoring history for now
+
+        head.next(); // Ignoring timeline for now
+    }
+
+    onLeave(head) {
+        // do nothing on leave
+    }
 }
 
 export default function Text(props) {return new NinoaText(props)};

@@ -30,7 +30,9 @@ export class TestHead {
     }
 
     next() {
+        this.onLeave(this.position);
         this.position = this.position.next(this);
+        this.onEnter(this.position);
     }
 
     back() {
