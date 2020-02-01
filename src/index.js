@@ -10,7 +10,7 @@ import TestWrapper from './ninoa/wrappers/TestWrapper.js';
 import MonogatariWrapper from './ninoa/wrappers/MonogatariWrapper';
 
 
-export function testTree(){
+function testTree(){
     return (
         <Scene>
             <Dialog>Hello world!</Dialog>
