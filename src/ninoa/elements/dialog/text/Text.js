@@ -19,22 +19,16 @@ export class NinoaText {
         return new Action(apply, remove);
     }
 
-    next(ninoaHead) {
-        return this.parent.next(ninoaHead);
-    }
-
-    back(ninoaHead) {
-        return this.parent.next(ninoaHead);
-    }
-
     onEnter(head) {
         head.engine.setText(head.engine.getText() + this.text); // ignoring history for now
-
-        head.next(); // Ignoring timeline for now
     }
 
     onLeave(head) {
         // do nothing on leave
+    }
+
+    shouldAutoContinue() {
+        return true; // ignoring timeline for now.
     }
 }
 
