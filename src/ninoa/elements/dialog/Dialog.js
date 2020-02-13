@@ -9,7 +9,12 @@ export class NinoaDialog {
     children;
 
     constructor(props) {
-        const {timeline = "onClick", children} = props;
+        // Timeline should not equal null by default
+        // But I'm having trouble merging props as currently the children are created before the parent
+        // because I'm not lazily creating the children.
+        // whoops!
+        // I just need a value to say "not specified by user so I can be overwritten."
+        const {timeline = null, children} = props;
 
         // Transforming strings into text nodes
         const finalChildren = children.map(child => {
@@ -21,7 +26,7 @@ export class NinoaDialog {
         finalChildren.forEach(child => child.parent = this);
 
         this.children = finalChildren;
-        this.timeline = timeline; // timeline not implemented for now.
+        this.timeline = timeline; // timeline only partly implemented for autoContinue.
         this.parent = null;
     }
 
@@ -31,33 +36,6 @@ export class NinoaDialog {
         return new Action(() => null, ()=> null);
     }
 
-    next(head) {
-        // Need to know which child we are currently prcessing.
-        const current = this.children.findIndex(child => child === head.position);
-
-        // escape hatch if no more children to process
-        if (this.children.length === current + 1) {
-            head.position = this;
-            return this.parent.next(head);
-        }
-
-        // default
-        return this.children[current+1];
-    }
-
-    back(head) {
-        // Need to know which child we are currently prcessing.
-        const current = this.children.findIndex(child => child === head.position);
-
-        // escape hatch if no more children to process backwards
-        if (0 < current - 1) {
-            return this.parent.back();
-        }
-
-        // default
-        return this.children[current-1];        
-    }
-
     onEnter(head) {
         // do nothing on enter.
     }
@@ -65,6 +43,13 @@ export class NinoaDialog {
     onLeave(head) {
         head.engine.showCurrentText(); // ignoring history for now
         head.engine.setText(""); // ignoring history for now
+    }
+
+    shouldAutoContinue() {
+        if (this.timeline === "with" || this.timeline === "after") {
+            return true;
+        }
+        return false; // ignoring timeline for now
     }
     
 }
