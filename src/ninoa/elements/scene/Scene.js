@@ -11,6 +11,14 @@ export class NinoaScene {
         // registering this instance as the parent of it's children.
         children.forEach(child => child.parent = this);
 
+        // TODO - fix this to work the correct way and not the hacky way.
+        // Make first child have "with" timeline unless the child overwrites it //
+        // Have to do it this way as I don't currently lazily create the children,
+        // thus I can't leave it to a "prop" merge abstraction.
+        if (children[0].timeline === null) {
+            children[0].timeline = "with";
+        }
+
         this.children = children;
         this.timeline = timeline; // timeline not implemented for now.
         this.parent = null;
@@ -21,45 +29,22 @@ export class NinoaScene {
         return new Action(() => null, ()=> null);
     }
 
-    next(head) {
-        // Need to know which child we are currently processing.
-        // returns -1 if head is not located in direct children.
-        const current = this.children.findIndex(child => child === head.position);
-
-        // escape hatch if no more children to process
-        if (this.children.length === current + 1) {
-            head.position = this;
-            return this.parent.next();
-        }
-
-        // default
-        // Note if current is not a direct child, then current + 1 will give 0.
-        return this.children[current+1];
-    }
-
-    back(head) {
-        // Need to know which child we are currently prcessing.
-        const current = this.children.findIndex(child => child === head.position);
-
-        // escape hatch if no more children to process backwards
-        if (0 < current - 1) {
-            head.position = this;
-            return this.parent.back();
-        }
-
-        // default
-        return this.children[current-1];        
-    }
-
     onEnter(head) {
+        // TODO
         // When the head is at a scene, it must move to a child as it cannot rest on a scene.
         // i.e. timeline "onClick" is invalid for scene.
-        head.next();
         // I should throw error if no children/provide a better error message.
+        // UPDATE
+        // Used to tell the head to move in this lifecycle but now I handle node traversing differently
+        // The above comments are still important tho. Need to implement it elsewhere.
     }
 
     onLeave(head) {
         // Do nothing on leave
+    }
+
+    shouldAutoContinue() {
+        return true;
     }
 }
 
