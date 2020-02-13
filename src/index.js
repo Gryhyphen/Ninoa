@@ -34,7 +34,7 @@ proofTestHead.continue();
 const myHead = new Head(testTree(), new MonogatariWrapper(Monogatari));
 
 function runNinoa() {
-    myHead.next();
+    myHead.continue();
     return false; // please pause Monogatari after I finish.
 }
 
@@ -46,7 +46,8 @@ Monogatari.script ({
     ],
     // Ninoa injection or whatever this is called
     'Ninoa_A' : [
-        function () { runNinoa(); },
+        runNinoa,
+        "A",
         "jump Ninoa_A"   
     ]
 });
