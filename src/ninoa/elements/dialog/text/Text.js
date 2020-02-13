@@ -24,7 +24,9 @@ export class NinoaText {
     }
 
     onLeave(head) {
-        // do nothing on leave
+        // TODO
+        // If stoping on a text node
+        if (this.timeline === "after") {} // Something like this to specify to render the dialog so far.
     }
 
     shouldAutoContinue() {
