@@ -11,8 +11,7 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "@aegis-framework/artemis": "^0.3.21",
-    "@monogatari/core": "file:vendor/Monogatari-2.0.0.beta.6",
+    "@monogatari/core": "^2.0.0-beta.7",
     "react": "^16.12.0"
   },
   "devDependencies": {

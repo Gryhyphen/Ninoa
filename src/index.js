@@ -1,6 +1,4 @@
-import Monogatari from '@monogatari/core';
-import {$_ready} from '@aegis-framework/artemis';
-
+import Monogatari, {$_ready} from '@monogatari/core';
 
 import createUN from "./ninoa/UNpragma.js";
 import Dialog from './ninoa/elements/Dialog/Dialog.js';

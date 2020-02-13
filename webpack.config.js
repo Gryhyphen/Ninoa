@@ -18,7 +18,7 @@ module.exports = {
 
         test: /\.(js|jsx)$/,
 
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules[\\/](?!(@monogatari)[\\/]).*/,
 
         loader: "babel-loader",
 
@@ -38,7 +38,7 @@ module.exports = {
         test: /\.js$/,
         use: ["source-map-loader"],
         enforce: "pre"
-      }
+      } 
 
     ]
 
