@@ -1,3 +1,5 @@
+import Action from "../actions/Action"; // using this for intellisense
+
 export default class Head {
     constructor(position, engineWrapper) {
         this.position = position;
@@ -8,6 +10,7 @@ export default class Head {
         if (this.position === null) throw new Error("NO MORE NODES!");
 
         const localStack = [{ position: this.position, shouldLeave: false }];
+        const actions = [];
 
         while (localStack.length > 0) {
             // Grab values from stack
@@ -35,13 +38,13 @@ export default class Head {
 
             // Performing lifecycle methods
             if (leave) {
-                currentPos.onLeave(this);
+                actions.push(currentPos.onLeave(this));
             } else if (currentPos.children) { // Check if you need to enter the children
-                currentPos.onEnter(this);
+                actions.push(currentPos.onEnter(this));
                 localStack.push({ position: currentPos.children[0], shouldLeave: false });
             } else { // otherwise iterate through children
-                currentPos.onEnter(this);
-                currentPos.onLeave(this); // current node must be a leaf node for this to be true.
+                actions.push(currentPos.onEnter(this));
+                actions.push(currentPos.onLeave(this)); // current node must be a leaf node for this to be true.
             }
 
             // Break if should not process next item on stack based on current auto continue rules.
@@ -50,6 +53,19 @@ export default class Head {
                 this.position = localStack.pop().position;
                 break;
             }
+        }
+
+        // Now applying actions
+        this.applyActions(actions.filter(action => action !== undefined));
+    }
+
+    /**
+     * 
+     * @param {Action[]} actions 
+     */
+    applyActions(actions) {
+        for (const action of actions) {
+            action.apply();
         }
     }
 

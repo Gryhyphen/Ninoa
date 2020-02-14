@@ -30,10 +30,17 @@ export class NinoaDialog {
         this.parent = null;
     }
 
-    createAction(engineWrapper) {
-        // Maybe I'll think of some action that a dialog actually does at some point.
-        // Like clearing text or something.
-        return new Action(() => null, ()=> null);
+    createLeaveAction(engineWrapper) {
+        const apply = () => {
+            engineWrapper.showCurrentText();
+            engineWrapper.setText("");
+        }
+
+        const remove = () => {
+            // TODO - honestly dunno how to revert a dialog at this stage yet.
+        }
+
+        return new Action(apply, remove);
     }
 
     onEnter(head) {
@@ -41,8 +48,7 @@ export class NinoaDialog {
     }
 
     onLeave(head) {
-        head.engine.showCurrentText(); // ignoring history for now
-        head.engine.setText(""); // ignoring history for now
+        return this.createLeaveAction(head.engine);
     }
 
     shouldAutoContinue() {

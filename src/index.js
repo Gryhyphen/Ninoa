@@ -21,10 +21,10 @@ function testTree(){
 // console.log(testTree()); // This was used just to check if the tree was built correctly.
 
 // Test wrappper tests
-const proofTestHead = new Head(testTree(), new TestWrapper())
-proofTestHead.continue();
-proofTestHead.continue();
-proofTestHead.continue();
+//const proofTestHead = new Head(testTree(), new TestWrapper())
+//proofTestHead.continue();
+//proofTestHead.continue();
+//proofTestHead.continue();
 // proofTestHead.continue(); crashes
 
 
@@ -39,13 +39,11 @@ function runNinoa() {
 Monogatari.script ({
 	// The game starts here.
 	'Start': [
-        "Hello!",
         "jump Ninoa_A"
     ],
     // Ninoa injection or whatever this is called
     'Ninoa_A' : [
         runNinoa,
-        "A",
         "jump Ninoa_A"   
     ]
 });

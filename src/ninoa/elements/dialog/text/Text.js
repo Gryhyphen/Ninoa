@@ -9,7 +9,7 @@ export class NinoaText {
         this.parent = null;
     }
 
-    createAction(engineWrapper) {
+    createEnterAction(engineWrapper) {
         // Calculate Apply - concatenates text
         let apply = () => engineWrapper.setText(engineWrapper.getText() + this.text);
         // Calculate Remove - reverts to prevous state
@@ -20,7 +20,7 @@ export class NinoaText {
     }
 
     onEnter(head) {
-        head.engine.setText(head.engine.getText() + this.text); // ignoring history for now
+        return this.createEnterAction(head.engine);
     }
 
     onLeave(head) {
