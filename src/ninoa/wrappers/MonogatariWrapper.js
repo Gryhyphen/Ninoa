@@ -6,8 +6,8 @@ export default class MonogatariWrapper {
     setText(text) {
         this.text = text;
     }
-    getText(text) {
-        this.text = text;
+    getText() {
+        return this.text;
     }
     showCurrentText() {
         this.engine.run(this.text, false);
