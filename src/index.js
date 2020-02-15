@@ -6,12 +6,20 @@ import Scene from './ninoa/elements/scene/Scene.js';
 import Head from './ninoa/head/Head.js';
 import TestWrapper from './ninoa/wrappers/TestWrapper.js';
 import MonogatariWrapper from './ninoa/wrappers/MonogatariWrapper';
+import Speed from './ninoa/elements/dialog/texteffect/speed/Speed.js';
 
 
 function testTree(){
     return (
         <Scene>
             <Dialog>Hello world!</Dialog>
+            <Dialog>
+                Well it's slightly wonky but it works!
+                So that's pretty cool that I can make text<Speed duration={3000}> really, really slow!</Speed>
+                 or make text <Speed duration={200}> really, really fast!</Speed>
+                 Yay! I did it. Yeah not really, it's not ocurring on the right things.
+                 I need to improve action scheduling and a whole bunch of other stuff in the next iterations.
+            </Dialog>
             <Dialog>Is this working?</Dialog>
             <Dialog>Please work</Dialog>
         </Scene>

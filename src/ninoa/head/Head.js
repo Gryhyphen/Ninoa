@@ -57,6 +57,7 @@ export default class Head {
 
         // Now applying actions
         this.applyActions(actions.filter(action => action !== undefined));
+        this.engine.setDelay(0); // reset delay after done.
     }
 
     /**

@@ -11,10 +11,44 @@ export class NinoaText {
 
     createEnterAction(engineWrapper) {
         // Calculate Apply - concatenates text
-        let apply = () => engineWrapper.setText(engineWrapper.getText() + this.text);
+     /*    const apply = () => {
+            // NOTE FOR THE TIMEOUT BELOW THAT UPDATES DURRATION
+            // put it in a timeout as a hack to cause this to execute after the continue()
+            // has finished.
+            // TODO - keeping the above as a note to remember that the child text node speed
+            // may not bee the default speed
+            //setTimeout(() => { 
+                //
+            //}, 0);
+
+            // calculate durration
+            const speed = 200; // 200 is a hack as the deault monogatari speed.
+            const duration = text.length[0] / speed;
+            // update delay
+            const startTime = engineWrapper.getDelay();
+            engineWrapper.setDelay(startTime + duration);
+            
+            // concat text
+            engineWrapper.setText(engineWrapper.getText() + this.text);
+            
+        }; */
+
+        const apply = () => {
+            // calculate durration
+            const speed = 20; // 20 is a hack as the deault monogatari speed.
+            const duration = this.text.length * speed;
+
+            // update delay
+            const startTime = engineWrapper.getDelay();
+            engineWrapper.setDelay(startTime + duration);
+
+            engineWrapper.setText(engineWrapper.getText() + this.text);
+        };
+
+
         // Calculate Remove - reverts to prevous state
         const currentText = engineWrapper.getText();
-        let remove = () => engineWrapper.setText(currentText);
+        const remove = () => engineWrapper.setText(currentText);
         // return the action
         return new Action(apply, remove);
     }
