@@ -35,8 +35,8 @@ export class NinoaText {
 
         const apply = () => {
             // calculate durration
-            const speed = 20; // 20 is a hack as the deault monogatari speed.
-            const duration = this.text.length * speed;
+            const speed = 0.020; // 20 is a hack as the deault monogatari speed.
+            const duration = this.text.length / speed;
 
             // update delay
             const startTime = engineWrapper.getDelay();

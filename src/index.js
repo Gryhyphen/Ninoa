@@ -18,7 +18,7 @@ function testTree(){
                 So that's pretty cool that I can make text<Speed duration={3000}> really, really slow!</Speed>
                  or make text <Speed duration={200}> really, really fast!</Speed>
                  Yay! I did it. Yeah not really, it's not ocurring on the right things.
-                 I need to improve action scheduling and a whole bunch of other stuff in the next iterations.
+                 I need to improve action scheduling and a whole bunch of other stuff.
             </Dialog>
             <Dialog>Is this working?</Dialog>
             <Dialog>Please work</Dialog>
