@@ -25,19 +25,20 @@ export class NinoaSpeed {
         let apply = () => {
             // calculate speed effect
             const length = this.textWithoutRichText().length;
-            const speed = this.duration / length;
+            const speed = 1 / (length / this.duration); // have to divide one to get in 1char/(x)milisecond
+            // instead of (x)char/1milisecond.
 
             // Figureout if playing with or after
             const startTime = engineWrapper.getDelay();
             const orignalSpeed = engineWrapper.getTypeSpeed();
             
             // Schedule speed updates to occur after start of render
-            engineWrapper.addTypeSpeedUpdate(startTime, speed);
+            engineWrapper.addTypeSpeedUpdate(startTime, speed); // have to invert speed as it's in 1char/per milisecond
             engineWrapper.addTypeSpeedUpdate(this.duration + startTime, orignalSpeed);
 
             // Update delay value for other effects
             engineWrapper.setDelay(startTime + this.duration);
-            
+
             // Update text
             engineWrapper.setText(engineWrapper.getText() + this.text);
         } 
