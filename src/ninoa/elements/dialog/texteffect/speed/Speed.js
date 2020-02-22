@@ -30,25 +30,15 @@ export class NinoaSpeed {
             // Figureout if playing with or after
             const startTime = engineWrapper.getDelay();
             const orignalSpeed = engineWrapper.getTypeSpeed();
+            
+            // Schedule speed updates to occur after start of render
+            engineWrapper.addTypeSpeedUpdate(startTime, speed);
+            engineWrapper.addTypeSpeedUpdate(this.duration + startTime, orignalSpeed);
 
-            //if (this.timeline === "with") { //ignoring timeline
-            setTimeout(() => {
-                engineWrapper.setTypeSpeed(speed);
-            }, startTime);
-
-            setTimeout(() => {
-                engineWrapper.setTypeSpeed(orignalSpeed);
-            }, this.duration + startTime);
-
+            // Update delay value for other effects
             engineWrapper.setDelay(startTime + this.duration);
-            //}
-
-            //monogatari.globals().textObject.typeSpeed = 500
-            // speed = distance / time.
-
-            //const startTime = t
-            //setTimeout()
-
+            
+            // Update text
             engineWrapper.setText(engineWrapper.getText() + this.text);
         } 
         // Calculate Remove - reverts to prevous state
